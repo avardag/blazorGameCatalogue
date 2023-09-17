@@ -35,7 +35,11 @@ else
                 <td>@game.Genre</td>
                 <td>@game.Price</td>
                 <td>@game.ReleaseDate.ToString("MM/dd/yyyy")</td>
-                <td></td>
+                <td>
+                    <button class="btn btn-primary" @onclick="()=>HandleEditClick(game.Id)">
+                        <i class="oi oi-pencil"></i>
+                    </button>
+                </td>
             </tr>
         }
         </tbody>
@@ -56,5 +60,10 @@ else
     private void CreateGame()
     {
         NavigationManager.NavigateTo("/game");
+    }
+
+    private void HandleEditClick(int id)
+    {
+        NavigationManager.NavigateTo($"/game/{id}");
     }
 }

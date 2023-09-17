@@ -18,7 +18,7 @@ public static class GameClient
         {
             Id=2,
             Name = "Final Fantasy XIV",
-            Genre = "Roleplaying",
+            Genre = "RolePlaying",
             Price = 59.99m,
             ReleaseDate = new DateTime(2010, 9,30)
         },
@@ -41,5 +41,18 @@ public static class GameClient
     {
         game.Id = games.Max(g => g.Id) + 1;
         games.Add(game);
+    } 
+    public static Game GetGame(int id)
+    {
+        return games.Find(g => g.Id == id) ?? throw new Exception("Could not find game");
+    }
+
+    public static void UpdateGame(Game updatedGame)
+    {
+        Game existingGame = GetGame(updatedGame.Id);
+        existingGame.Name = updatedGame.Name;
+        existingGame.Genre = updatedGame.Genre;
+        existingGame.Price = updatedGame.Price;
+        existingGame.ReleaseDate = updatedGame.ReleaseDate;
     }
 }
